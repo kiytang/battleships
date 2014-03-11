@@ -24,4 +24,18 @@ describe Board do
 	  	expect(board.ship_count).to eq 5
 	  end
 	end
+
+	context "Board functions" do
+
+		# it "can translate Evgeny coordinates to grid coordinates" do
+		# 	expect(board.translate("A8")).to eq([8,1])
+		# end
+	# end
+
+	it "should register a shot if ship present" do
+		board.make_ship_square(1,3)
+		board.register_shot('C1')
+		expect(board.square_at(1,3)).to eq 'x'
+	end		
+	end
 end
