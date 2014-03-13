@@ -65,10 +65,13 @@ class Board
     mapping = Hash[('a'..'z').to_a.zip(1..26)]
     first_number = mapping[letter]
     
-    array = [first_number,number]  
+    array = [number, first_number]  
   end
 
   def register_shot(coordinates)
+    translated = translate(coordinates)
+    row = translated.last
+    element = translated.first
     if square_at(row, element) == 's'
       @rows[row-1][element-1] = 'x'
     else
