@@ -56,6 +56,18 @@ class Board
   end
 
 ################
+
+  def translate(coordinates)
+    letter_index = coordinates =~/\D/
+    letter = coordinates[letter_index].downcase # A
+    number_index = coordinates =~/\d/
+    number = coordinates[number_index].to_i
+    mapping = Hash[('a'..'z').to_a.zip(1..26)]
+    first_number = mapping[letter]
+    
+    array = [first_number,number]  
+  end
+
   def register_shot(coordinates)
     if square_at(row, element) == 's'
       @rows[row-1][element-1] = 'x'
