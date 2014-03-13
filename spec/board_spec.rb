@@ -35,10 +35,24 @@ describe Board do
 
 		it "should register a shot if ship present" do
 			board.make_ship_square(1,3)
-			board.register_shot("A3")
+			board.register_shot("C1")
 			expect(board.square_at(1,3)).to eq 'x'
 		end	
 
+		it "should register a shot in the water" do
+			board.make_ship_square(8,1)
+			board.register_shot("J6")
+			expect(board.square_at(6,10)).to eq 'o'  		
+		end
+	end
+
+	context "oppenent view" do
+		
+		it "should replace ships with empty string" do
+			board.make_ship_square(8,1)
+			board.opponent_view
+			expect(board.square_at(8,1)).to eq nil
+		end
 
 	end
 end

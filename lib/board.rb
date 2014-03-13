@@ -35,6 +35,37 @@ class Board
     count.reduce(:+)
   end
 
+
+  def translate(coordinates)
+    letter_index = coordinates =~/\D/
+    letter = coordinates[letter_index].downcase # A
+    number_index = coordinates =~/\d/
+    number = coordinates[number_index].to_i
+    mapping = Hash[('a'..'z').to_a.zip(1..26)]
+    first_number = mapping[letter]
+    
+    array = [number, first_number]  
+  end
+
+  def register_shot(coordinates)
+    translated = translate(coordinates)
+    row = translated.first
+    element = translated.last
+    if square_at(row, element) == 's'
+      @rows[row-1][element-1] = 'x'
+    else
+      @rows[row-1][element-1] = 'o'     
+    end
+  end
+
+  def opponent_view
+    @rows.map! do |row|
+      row.map {|cell| cell == "s" ? cell = nil : cell}
+    end
+  end
+
+  private
+
   def air_craft_carrier
     make_ship_square(10,8)
   end
@@ -53,30 +84,6 @@ class Board
 
   def patrol_boat
     make_ship_square(4,2)
-  end
-
-################
-
-  def translate(coordinates)
-    letter_index = coordinates =~/\D/
-    letter = coordinates[letter_index].downcase # A
-    number_index = coordinates =~/\d/
-    number = coordinates[number_index].to_i
-    mapping = Hash[('a'..'z').to_a.zip(1..26)]
-    first_number = mapping[letter]
-    
-    array = [number, first_number]  
-  end
-
-  def register_shot(coordinates)
-    translated = translate(coordinates)
-    row = translated.last
-    element = translated.first
-    if square_at(row, element) == 's'
-      @rows[row-1][element-1] = 'x'
-    else
-      @rows[row-1][element-1] = 'o'     
-    end
   end
 
 end 
