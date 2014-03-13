@@ -10,7 +10,7 @@ describe Player do
   end
 
   it "should know that there are still ships that are not hit" do
-  	player.afloat.to eq true
+  	expect(player.afloat).to eq true
   end
 
 

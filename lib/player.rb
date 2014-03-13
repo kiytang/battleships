@@ -13,8 +13,6 @@ class Player
   end
 
   def afloat
-      
-
-    
+    board.rows.flatten.any? {|cell| cell == 's'}      
   end
 end
