@@ -10,10 +10,14 @@ describe Player do
   end
 
   it "should know that there are still ships that are not hit" do
-  	expect(player.afloat).to eq true
+  	expect(player.has_ships_still_floating?).to eq true
   end
 
-
+  it "should be able to shoot at the opponents board" do
+    enemy = Player.new('enemy')
+    player.shoot([1,1], enemy.board)
+    expect(enemy.board.rows.flatter.include?('o')).to eq true
+  end
 end
 
 
