@@ -6,6 +6,11 @@ class Board
     @player
     #build up multi-dimensional arrays
     @rows = Array.new(10) {Array.new(10)}  
+    air_craft_carrier
+    battleships
+    submarine
+    destroyer
+    patrol_boat
   end
 
   def make_ship_square(row, element)
