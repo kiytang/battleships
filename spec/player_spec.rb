@@ -15,8 +15,8 @@ describe Player do
 
   it "should be able to shoot at the opponents board" do
     enemy = Player.new('enemy')
-    player.shoot([1,1], enemy.board)
-    expect(enemy.board.rows.flatter.include?('o')).to eq true
+    player.shoot("A1", enemy.board)
+    expect(enemy.board.rows.flatten.include?('o')).to eq true
   end
 end
 
